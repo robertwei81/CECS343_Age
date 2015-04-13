@@ -1,0 +1,103 @@
+GUI-Splash Screen
+	-Graphical Display introduction
+GUI-Basic Info
+	-Help button
+
+GUI-StartGame <- requires players names
+	Age-Init
+		Bank
+		PoolOfTiles
+		PoolOfBuildings (thought we werent using this)
+		RandomDecks (player of same race pick from the same deck)
+		Players-init
+			resource
+			resource tiles
+			military - not doing this version 3-4 maybe
+			PermanentCardDeck (each player gets their own) 
+			
+		
+	Age-Game Turns
+		Place Victory Point (while there are victory points in bank)
+		Draw Cards
+		3 plays of action cards
+		Spoilage
+		End round - repeat (while no one has build a Wonder)
+		
+	Age-Game Over
+		Consolidate game state : Players victory points
+
+GUI-Display End Game State
+
+		
+		
+
+
+//Execution of action Card need to be interpreted here at game level
+/*Index for God Card
+* 1
+* 2
+* 3
+* 4
+* 5
+* 6
+* 7
+* 8
+* 9
+* 10
+* 11
+* 12
+* 13
+* 14
+* 15
+* 16
+* 17
+* 18
+* 19
+* 20
+*/
+
+
+/* Default Matrix of modV1 @default mode
+* Type		modV1	meaning										what's involved
+* Build	1		Building Limit								tracking num of new buildings
+* Trade	2		Cost to trade for 1 resource from bank		trading 2 to 1 by default
+* Explore	0		Resource Tile Limit (modV1+numOfPlayers)	tracking num of random tiles
+* Attack	4		max number of unit you may send				default value is 4
+* Recruit	2		Max Recruiting Limit						tracking num of new units
+* Gather	0		Choices between Resource or Terrain			prompt user for option
+* ---------------------------------------------------------------------------------
+* NextAge	0		Age up by 1, cost is set to 4 per resource	increase handsize and age vars							
+* 					etc,	   , cost is set to 5 per resource  ..
+* 					etc.	   , cost is set to 6 per resource  ..
+* --------------------------------------------------------------------------------- 
+* Augment Matrix of modV1 @modified mode
+* Type		modV1	meaning										what's involved
+* Build	x		Building Limit is x							tracking num of new buildings
+* Trade	x		Cost to trade for x resource from bank		trading x to 1 by default
+* Explore	x		Resource Tile Limit (x+numOfPlayers)		tracking num of random tiles
+* Attack	x		max number of unit you may send is x		default value is 4
+* Recruit	x		Max Recruiting Limit is x					tracking num of new units
+* Gather	1		All Resource (Everything)					setting villagers, then gather								
+* ---------------------------------------------------------------------------------
+* NextAge	1		Age up by 1, cost is set to 3 per resource  check current age/handsize and align cost
+* 					.. etc,	   , cost is set to 4 per resource  deduct resource before making adjustments
+* 					.. etc.	   , cost is set to 5 per resource  at end, increase handsize and age vars
+* --------------------------------------------------------------------------------- 
+*/
+
+
+/* Special class of action Card
+//NORSE		"type"	 //modifers vars		//if favor paid								//cost to play  
+//Bragi		"Attack" //6 "max send 6 units"	//+1 die to units sent 					    //cost 2 favor
+//Heimdall	"Attack" //4 "max send 4 units"	//no limit on the size of the battle		//cost 4 favor
+//Tyr		"Attack  //6 "max send 6 units" //+2 die, but loose on all ties				//cost 3 favor
+//Loki		"Trade"	 //0 "0 cost"			//take 5 resource from one player			//cost 2 favor
+//Forseti	"Trade"  //0 "0 cost"		    //gain any 4 resource 						//cost 1 favor
+//Skadi		"Gather" //0 "terrain.resource 	//other players get nothing					//cost 1 favor
+//Freya		"Gather  //0 "terrain.resource" //gain 5 gold from bank						//cost 1 favor
+//Thor		"Gather" //0 "terrain.resource"	//remove 1 mythic unit from another player	//cost 1 favor
+//Hel		"Recruit"//3 "max 3 units"		//gain 2 units of your choice  				//cost 1 favor
+//Odin		"NextAge"//1 "-1/-1/-1/-1"		//4th action is allowed 3rd ones			//cost 1 favor
+//Baldr		"Explore"//0 "same as players"  //other player don't get resource tile		//cost 1 favor
+//Njord		"Build"  //4 "max builts 		//destroy any one building of another player//cost 1 favor
+*/
